@@ -46,7 +46,7 @@ int test(char *URL)
 
   /* Create fake DNS entries for serverX.example.com for all handles */
   for(i = 0; i < NUM_HANDLES; i++) {
-    snprintf(dnsentry, sizeof(dnsentry), "server%d.example.com:%s:%s",
+    msnprintf(dnsentry, sizeof(dnsentry), "server%d.example.com:%s:%s",
              i + 1, port, address);
     printf("%s\n", dnsentry);
     slist2 = curl_slist_append(slist, dnsentry);
@@ -70,7 +70,7 @@ int test(char *URL)
     /* get an easy handle */
     easy_init(curl[i]);
     /* specify target */
-    snprintf(target_url, sizeof(target_url),
+    msnprintf(target_url, sizeof(target_url),
              "http://server%d.example.com:%s/path/1506%04i",
              i + 1, port, i + 1);
     target_url[sizeof(target_url) - 1] = '\0';

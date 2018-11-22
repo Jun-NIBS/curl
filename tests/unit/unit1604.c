@@ -46,7 +46,7 @@ static char *getflagstr(int flags)
 {
   char *buf = malloc(256);
   if(buf) {
-    snprintf(buf, 256, "%s,%s,%s,%s",
+    msnprintf(buf, 256, "%s,%s,%s,%s",
       ((flags & SANITIZE_ALLOW_COLONS) ? "SANITIZE_ALLOW_COLONS" : ""),
       ((flags & SANITIZE_ALLOW_PATH) ? "SANITIZE_ALLOW_PATH" : ""),
       ((flags & SANITIZE_ALLOW_RESERVED) ? "SANITIZE_ALLOW_RESERVED" : ""),
@@ -59,7 +59,7 @@ static char *getcurlcodestr(int cc)
 {
   char *buf = malloc(256);
   if(buf) {
-    snprintf(buf, 256, "%s (%d)",
+    msnprintf(buf, 256, "%s (%d)",
       (cc == SANITIZE_ERR_OK ? "SANITIZE_ERR_OK" :
        cc == SANITIZE_ERR_BAD_ARGUMENT ? "SANITIZE_ERR_BAD_ARGUMENT" :
        cc == SANITIZE_ERR_INVALID_PATH ? "SANITIZE_ERR_INVALID_PATH" :

@@ -53,7 +53,7 @@ int test(char *URL)
     /* get an easy handle */
     easy_init(curl[i]);
     /* specify target */
-    snprintf(target_url, sizeof(target_url), "%s%04i", URL, i + 1);
+    msnprintf(target_url, sizeof(target_url), "%s%04i", URL, i + 1);
     target_url[sizeof(target_url) - 1] = '\0';
     easy_setopt(curl[i], CURLOPT_URL, target_url);
     /* go verbose */

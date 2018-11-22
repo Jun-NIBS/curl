@@ -509,10 +509,10 @@ static int ProcessRequest(struct httprequest *req)
     /* get the number after it */
     if(ptr) {
       if((strlen(doc) + strlen(request)) < 400)
-        snprintf(logbuf, sizeof(logbuf), "Got request: %s %s HTTP/%d.%d",
+        msnprintf(logbuf, sizeof(logbuf), "Got request: %s %s HTTP/%d.%d",
                  request, doc, prot_major, prot_minor);
       else
-        snprintf(logbuf, sizeof(logbuf), "Got a *HUGE* request HTTP/%d.%d",
+        msnprintf(logbuf, sizeof(logbuf), "Got a *HUGE* request HTTP/%d.%d",
                  prot_major, prot_minor);
       logmsg("%s", logbuf);
 
@@ -545,7 +545,7 @@ static int ProcessRequest(struct httprequest *req)
 
       if(req->testno) {
 
-        snprintf(logbuf, sizeof(logbuf), "Requested test number %ld part %ld",
+        msnprintf(logbuf, sizeof(logbuf), "Requested test number %ld part %ld",
                  req->testno, req->partno);
         logmsg("%s", logbuf);
 
@@ -565,7 +565,7 @@ static int ProcessRequest(struct httprequest *req)
                 doc, &prot_major, &prot_minor) == 3) {
         char *portp = NULL;
 
-        snprintf(logbuf, sizeof(logbuf),
+        msnprintf(logbuf, sizeof(logbuf),
                  "Received a CONNECT %s HTTP/%d.%d request",
                  doc, prot_major, prot_minor);
         logmsg("%s", logbuf);
@@ -645,7 +645,7 @@ static int ProcessRequest(struct httprequest *req)
         else
           req->partno = 0;
 
-        snprintf(logbuf, sizeof(logbuf),
+        msnprintf(logbuf, sizeof(logbuf),
                  "Requested test number %ld part %ld (from host name)",
                  req->testno, req->partno);
         logmsg("%s", logbuf);
@@ -696,7 +696,7 @@ static int ProcessRequest(struct httprequest *req)
       else
         req->partno = 0;
 
-      snprintf(logbuf, sizeof(logbuf),
+      msnprintf(logbuf, sizeof(logbuf),
                "Requested GOPHER test number %ld part %ld",
                req->testno, req->partno);
       logmsg("%s", logbuf);
@@ -1117,12 +1117,12 @@ static int send_doc(curl_socket_t sock, struct httprequest *req)
     case DOCNUMBER_WERULEZ:
       /* we got a "friends?" question, reply back that we sure are */
       logmsg("Identifying ourselves as friends");
-      snprintf(msgbuf, sizeof(msgbuf), "WE ROOLZ: %ld\r\n", (long)getpid());
+      msnprintf(msgbuf, sizeof(msgbuf), "WE ROOLZ: %ld\r\n", (long)getpid());
       msglen = strlen(msgbuf);
       if(use_gopher)
-        snprintf(weare, sizeof(weare), "%s", msgbuf);
+        msnprintf(weare, sizeof(weare), "%s", msgbuf);
       else
-        snprintf(weare, sizeof(weare),
+        msnprintf(weare, sizeof(weare),
                  "HTTP/1.1 200 OK\r\nContent-Length: %zu\r\n\r\n%s",
                  msglen, msgbuf);
       buffer = weare;
@@ -1145,9 +1145,9 @@ static int send_doc(curl_socket_t sock, struct httprequest *req)
     const char *section = req->connect_request?"connect":"data";
 
     if(req->partno)
-      snprintf(partbuf, sizeof(partbuf), "%s%ld", section, req->partno);
+      msnprintf(partbuf, sizeof(partbuf), "%s%ld", section, req->partno);
     else
-      snprintf(partbuf, sizeof(partbuf), "%s", section);
+      msnprintf(partbuf, sizeof(partbuf), "%s", section);
 
     logmsg("Send response test%ld section <%s>", req->testno, partbuf);
 
@@ -2118,7 +2118,7 @@ int main(int argc, char *argv[])
     }
   }
 
-  snprintf(port_str, sizeof(port_str), "port %hu", port);
+  msnprintf(port_str, sizeof(port_str), "port %hu", port);
 
 #ifdef WIN32
   win32_init();

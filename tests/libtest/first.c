@@ -124,7 +124,7 @@ char *hexdump(const unsigned char *buffer, size_t len)
   if(len > 200)
     return NULL;
   for(i = 0; i<len; i++, p += 3)
-    snprintf(p, 4, "%02x ", buffer[i]);
+    msnprintf(p, 4, "%02x ", buffer[i]);
   return dump;
 }
 

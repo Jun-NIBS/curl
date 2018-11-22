@@ -569,7 +569,7 @@ static ssize_t write_behind(struct testcase *test, int convert)
 
   if(!test->ofile) {
     char outfile[256];
-    snprintf(outfile, sizeof(outfile), "log/upload.%ld", test->testno);
+    msnprintf(outfile, sizeof(outfile), "log/upload.%ld", test->testno);
 #ifdef WIN32
     test->ofile = open(outfile, O_CREAT|O_RDWR|O_BINARY, 0777);
 #else
@@ -1141,7 +1141,7 @@ static int validate_access(struct testcase *test,
 
   if(!strncmp("verifiedserver", filename, 14)) {
     char weare[128];
-    size_t count = snprintf(weare, sizeof(weare),
+    size_t count = msnprintf(weare, sizeof(weare),
                             "WE ROOLZ: %ld\r\n", (long)getpid());
 
     logmsg("Are-we-friendly question received");
@@ -1187,7 +1187,7 @@ static int validate_access(struct testcase *test,
     file = test2file(testno);
 
     if(0 != partno)
-      snprintf(partbuf, sizeof(partbuf), "data%ld", partno);
+      msnprintf(partbuf, sizeof(partbuf), "data%ld", partno);
 
     if(file) {
       FILE *stream = fopen(file, "rb");

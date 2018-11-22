@@ -50,7 +50,7 @@ int test(char *URL)
   /* DNS cache injection */
   struct curl_slist *dns_cache_list;
 
-  snprintf(redirect, sizeof(redirect), "google.com:%s:%s", libtest_arg2,
+  msnprintf(redirect, sizeof(redirect), "google.com:%s:%s", libtest_arg2,
            libtest_arg3);
 
   start_test_timing();

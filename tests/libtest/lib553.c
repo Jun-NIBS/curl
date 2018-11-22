@@ -75,7 +75,7 @@ int test(char *URL)
   }
 
   for(i = 0; i < NUM_HEADERS; i++) {
-    int len = snprintf(buf, sizeof(buf), "Header%d: ", i);
+    int len = msnprintf(buf, sizeof(buf), "Header%d: ", i);
     memset(&buf[len], 'A', SIZE_HEADERS);
     buf[len + SIZE_HEADERS] = 0; /* zero terminate */
     hl = curl_slist_append(headerlist,  buf);

@@ -198,7 +198,7 @@ int test(char *URL)
   if(test_argc < 4)
     return 99;
 
-  snprintf(buffer, sizeof(buffer), "Host: %s", HOST);
+  msnprintf(buffer, sizeof(buffer), "Host: %s", HOST);
 
   /* now add a custom Host: header */
   headers = curl_slist_append(headers, buffer);

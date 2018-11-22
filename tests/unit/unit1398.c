@@ -74,7 +74,7 @@ fail_unless(!strcmp(output, "     bu"), "wrong output");
 
 /* output a number in a limited output */
 rc = curl_msnprintf(output, 4, "%d", 10240);
-/* TODO: this should return 5 to be POSIX/snprintf compliant! */
+/* TODO: this should return 5 to be POSIX/msnprintf compliant! */
 fail_unless(rc == 4, "return code should be 4");
 fail_unless(!strcmp(output, "102"), "wrong output");
 

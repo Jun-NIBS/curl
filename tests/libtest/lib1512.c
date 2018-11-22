@@ -49,7 +49,7 @@ int test(char *URL)
     return TEST_ERR_MAJOR_BAD;
   }
 
-  snprintf(dnsentry, sizeof(dnsentry), "server.example.curl:%s:%s",
+  msnprintf(dnsentry, sizeof(dnsentry), "server.example.curl:%s:%s",
            port, address);
   printf("%s\n", dnsentry);
   slist = curl_slist_append(slist, dnsentry);
@@ -59,7 +59,7 @@ int test(char *URL)
     /* get an easy handle */
     easy_init(curl[i]);
     /* specify target */
-    snprintf(target_url, sizeof(target_url),
+    msnprintf(target_url, sizeof(target_url),
              "http://server.example.curl:%s/path/1512%04i",
              port, i + 1);
     target_url[sizeof(target_url) - 1] = '\0';

@@ -75,7 +75,7 @@ static char *printable(char *inbuf, size_t inlength)
     return NULL;
 
   if(!inlength) {
-    snprintf(&outbuf[0], outsize, "%s", NOTHING_STR);
+    msnprintf(&outbuf[0], outsize, "%s", NOTHING_STR);
     return outbuf;
   }
 
@@ -97,7 +97,7 @@ static char *printable(char *inbuf, size_t inlength)
       o++;
     }
     else {
-      snprintf(&outbuf[o], outsize - o, HEX_FMT_STR, inbuf[i]);
+      msnprintf(&outbuf[o], outsize - o, HEX_FMT_STR, inbuf[i]);
       o += HEX_STR_LEN;
     }
 
@@ -174,7 +174,7 @@ int main(int argc, char *argv[])
   }
 
   /* logmsg cannot be used until this file name is set */
-  snprintf(logfilename, sizeof(logfilename), LOGFILE, testnum);
+  msnprintf(logfilename, sizeof(logfilename), LOGFILE, testnum);
   serverlogfile = logfilename;
 
   logmsg("fake_ntlm (user: %s) (proto: %s) (domain: %s) (cached creds: %s)",
